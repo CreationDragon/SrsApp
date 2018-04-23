@@ -1,31 +1,17 @@
 package com.gtt.app;
 
-import android.content.ClipData;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
-import com.google.gson.Gson;
-import com.gtt.app.fragment.InfoscanFragment;
-import com.gtt.app.fragment.NewscenterFragment;
-import com.gtt.app.general.GeneralSetting;
-import com.gtt.app.model.JsonResult;
-import com.gtt.app.model.News;
-
-import org.xutils.common.Callback;
-import org.xutils.http.RequestParams;
-import org.xutils.x;
-
-import java.util.List;
+import com.gtt.app.fragment.UserInfoFragment;
+import com.gtt.app.fragment.InfoScanFragment;
 
 import butterknife.BindView;
 
@@ -45,19 +31,26 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_home:
                     fragmentManager = getSupportFragmentManager();
                     transaction = fragmentManager.beginTransaction();
-                    transaction.replace(R.id.replace_content, new NewscenterFragment());
+                    transaction.replace(R.id.replace_content, new InfoScanFragment());
                     transaction.commit();
                     return true;
-                case R.id.navigation_dashboard:
+                case R.id.navigation_releaseInfo:
                     fragmentManager = getSupportFragmentManager();
                     transaction = fragmentManager.beginTransaction();
-                    transaction.replace(R.id.replace_content, new InfoscanFragment());
+                    transaction.replace(R.id.replace_content, new UserInfoFragment());
                     transaction.commit();
                     return true;
-                case R.id.navigation_notifications:
+                case R.id.navigation_siteNews:
                     fragmentManager = getSupportFragmentManager();
                     transaction = fragmentManager.beginTransaction();
-                    transaction.replace(R.id.replace_content, new InfoscanFragment());
+                    transaction.replace(R.id.replace_content, new UserInfoFragment());
+                    transaction.commit();
+                    return true;
+
+                case R.id.navigation_userInfo:
+                    fragmentManager = getSupportFragmentManager();
+                    transaction = fragmentManager.beginTransaction();
+                    transaction.replace(R.id.replace_content, new UserInfoFragment());
                     transaction.commit();
                     return true;
             }
