@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.gtt.app.fragment.NewsCenterFragment;
+import com.gtt.app.fragment.ReleaseInfoFragment;
 import com.gtt.app.fragment.UserInfoFragment;
 import com.gtt.app.fragment.InfoScanFragment;
 
@@ -37,13 +39,13 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_releaseInfo:
                     fragmentManager = getSupportFragmentManager();
                     transaction = fragmentManager.beginTransaction();
-                    transaction.replace(R.id.replace_content, new UserInfoFragment());
+                    transaction.replace(R.id.replace_content, new ReleaseInfoFragment());
                     transaction.commit();
                     return true;
                 case R.id.navigation_siteNews:
                     fragmentManager = getSupportFragmentManager();
                     transaction = fragmentManager.beginTransaction();
-                    transaction.replace(R.id.replace_content, new UserInfoFragment());
+                    transaction.replace(R.id.replace_content, new NewsCenterFragment());
                     transaction.commit();
                     return true;
 

@@ -49,6 +49,7 @@ public class InfoScanFragment extends Fragment {
     Banner banner;
     @BindView(R.id.ll_missInfo)
     ListView ll_missInfo;
+    @BindView(R.id.sv_missPerson)
     SearchView searchView;
     private List<Missingpersons> missingpersonsList = new ArrayList<>();
 
@@ -56,7 +57,7 @@ public class InfoScanFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         x.Ext.init(getActivity().getApplication());
-        View view = inflater.inflate(R.layout.fragment_newscenter, container, false);
+        View view = inflater.inflate(R.layout.fragment_infoscan, container, false);
         banner = view.findViewById(R.id.banner);
         ll_missInfo = view.findViewById(R.id.ll_missInfo);
         searchView = view.findViewById(R.id.sv_missPerson);

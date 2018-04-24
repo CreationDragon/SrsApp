@@ -10,4 +10,7 @@ public class GeneralSetting {
     public static String getPersonsPicUrl = baseUrl + "getPersonPic";
     public static String infoSearchUrl = baseUrl + "infoSearch";
     public static String missPeronsInfoDeatailUrl = baseUrl + "getMissPersonsById";
+    public static String getSuccessCaseUrl = baseUrl + "getSuccessCases";
+    public static String getSiteNewsUrl = baseUrl + "getSiteNotice";
+    public static String getAntiTipsUrl = baseUrl + "getAntiFraudiTips";
 }

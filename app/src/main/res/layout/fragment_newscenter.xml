@@ -1,24 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
-        android:id="@+id/ll_search"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary">
-
-        <SearchView
-            android:id="@+id/sv_missPerson"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20px"
-            android:background="#FFFFFF"
-            android:gravity="center"
-            android:iconifiedByDefault="false"
-            android:queryHint="@string/search_hint" />
-    </LinearLayout>
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <com.youth.banner.Banner xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/banner"
@@ -27,13 +11,125 @@
         android:layout_below="@id/ll_search"
         android:layout_marginTop="50px" />
 
-    <ListView
-        android:id="@+id/ll_missInfo"
+
+    <!--成功案例-->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/banner"
-        android:layout_marginBottom="150px"
-        android:layout_marginTop="50px" />
+        android:layout_marginTop="30px"
+        android:orientation="vertical">
+        <!--logo 和标题-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <!--logo-->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/paysuccess" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20px"
+                android:gravity="center"
+                android:text="成功案例" />
+        </LinearLayout>
+        <!--实际内容-->
+        <LinearLayout
+            android:id="@+id/ll_success_case"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100px"
+            android:layout_marginTop="20px"
+            android:orientation="vertical">
+
+        </LinearLayout>
 
 
-</RelativeLayout>
+    </LinearLayout>
+
+
+    <!--站内新闻-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30px"
+        android:orientation="vertical">
+        <!--logo 和标题-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <!--logo-->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/news_1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20px"
+                android:gravity="center"
+                android:text="站内新闻" />
+        </LinearLayout>
+        <!--实际内容-->
+        <LinearLayout
+            android:id="@+id/ll_site_news"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100px"
+            android:layout_marginTop="20px"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <!--防骗措施-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30px"
+        android:orientation="vertical">
+        <!--logo 和标题-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <!--logo-->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/tips_1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20px"
+                android:gravity="center"
+                android:text="防骗技巧" />
+        </LinearLayout>
+        <!--实际内容-->
+        <LinearLayout
+            android:id="@+id/ll_anti_tips"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100px"
+            android:layout_marginTop="20px"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

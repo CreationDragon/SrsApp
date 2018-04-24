@@ -1,11 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/ll_search"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="在你三百里之外" />
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
 
-</android.support.constraint.ConstraintLayout>
+        <SearchView
+            android:id="@+id/sv_missPerson"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20px"
+            android:background="#FFFFFF"
+            android:gravity="center"
+            android:iconifiedByDefault="false"
+            android:queryHint="@string/search_hint" />
+    </LinearLayout>
+
+    <com.youth.banner.Banner xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="400px"
+        android:layout_below="@id/ll_search"
+        android:layout_marginTop="50px" />
+
+    <ListView
+        android:id="@+id/ll_missInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/banner"
+        android:layout_marginBottom="150px"
+        android:layout_marginTop="50px" />
+
+
+</RelativeLayout>

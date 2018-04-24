@@ -2,6 +2,7 @@ package com.gtt.app.Util;
 
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
 import com.gtt.app.general.GeneralSetting;
 import com.gtt.app.model.JsonResult;
@@ -17,8 +18,9 @@ import org.xutils.x;
 
 public class NetAccessUtil {
     JsonResult jsonResult = new JsonResult();
+    String myJson = null;
 
-    public Object getNetAccessData(String url, String paramName, Object paramValue) {
+    public String getNetAccessData(String url, String paramName, Object paramValue) {
         //        根据ID获取详细失踪信息
 
         RequestParams params = new RequestParams(url);
@@ -29,7 +31,8 @@ public class NetAccessUtil {
             public void onSuccess(String result) {
 //使用GSON将字符串转为对象
                 Gson gson = new Gson();
-                jsonResult = gson.fromJson(result, JsonResult.class);
+                JsonResult jsonResult = JSON.parseObject(result, JsonResult.class);
+                myJson = gson.toJson(jsonResult.getData());
             }
 
             @Override
@@ -47,7 +50,7 @@ public class NetAccessUtil {
 
             }
         });
-        return jsonResult.getData();
+        return myJson;
     }
 
 }

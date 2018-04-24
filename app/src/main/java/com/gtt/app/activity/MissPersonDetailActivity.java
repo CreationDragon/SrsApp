@@ -26,6 +26,7 @@ import com.youth.banner.Banner;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
+import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.lang.reflect.Type;
@@ -41,6 +42,7 @@ import butterknife.BindView;
 public class MissPersonDetailActivity extends AppCompatActivity {
 
     Banner banner;
+    @ViewInject(R.id.ll_missInfo)
     ListView ll_missInfo;
     ImageView back;
     List<String> pics = new ArrayList<>();
