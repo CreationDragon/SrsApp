@@ -1,6 +1,7 @@
 package com.gtt.app.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -19,6 +20,8 @@ import com.google.gson.Gson;
 import com.gtt.app.R;
 import com.gtt.app.Util.GlideImageLoader;
 import com.gtt.app.Util.NetAccessUtil;
+import com.gtt.app.activity.DetailNews;
+import com.gtt.app.activity.MorenewsActivity;
 import com.gtt.app.general.GeneralSetting;
 import com.gtt.app.model.JsonResult;
 import com.gtt.app.model.Missingpersons;
@@ -37,7 +40,7 @@ import java.util.List;
  * Created by Creat on 2018/4/24.
  */
 
-public class NewsCenterFragment extends Fragment {
+public class NewsCenterFragment extends Fragment implements View.OnClickListener {
     Banner banner;
     @ViewInject(R.id.ll_success_case)
     LinearLayout ll_success_case;
@@ -50,13 +53,21 @@ public class NewsCenterFragment extends Fragment {
     List<News> siteNewsList = new ArrayList<>();
     List<News> antiTipsList = new ArrayList<>();
     JsonResult jsonResult = new JsonResult();
+
+    @ViewInject(R.id.tv_more_case)
+    TextView tv_more_case;
+    @ViewInject(R.id.tv_more_notice)
+    TextView tv_more_notice;
+    @ViewInject(R.id.tv_more_tips)
+    TextView tv_more_tips;
+
     private final int UPDATE_SUCCESS_CASE = 1;
     private final int UPDATE_SITE_NEWS = 2;
     private final int UPDATE_ANTI_TIPS = 3;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 //        初始化XUtil
         x.Ext.init(getActivity().getApplication());
@@ -70,6 +81,8 @@ public class NewsCenterFragment extends Fragment {
                     case UPDATE_SUCCESS_CASE:
                         for (int i = 0; i < 3; i++) {
                             TextView tv = new TextView(getContext());
+//                            获取新闻id
+                            final int newsId = successCaseList.get(i).getNewsId();
                             tv.setText(successCaseList.get(i).getNewsTitle());
                             tv.setGravity(Gravity.CENTER_VERTICAL);
                             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
@@ -77,6 +90,15 @@ public class NewsCenterFragment extends Fragment {
                             tv.setLayoutParams(params);
                             ll_success_case.addView(tv);
                             ll_success_case.requestLayout();
+                            tv.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent();
+                                    intent.putExtra("caseId", newsId);
+                                    intent.setClass(getContext(), DetailNews.class);
+                                    startActivity(intent);
+                                }
+                            });
                         }
 
                         break;
@@ -85,6 +107,7 @@ public class NewsCenterFragment extends Fragment {
                     case UPDATE_SITE_NEWS:
                         for (int i = 0; i < 3; i++) {
                             TextView tv = new TextView(getContext());
+                            final int newsId = siteNewsList.get(i).getNewsId();
                             tv.setText(siteNewsList.get(i).getNewsTitle());
                             tv.setGravity(Gravity.CENTER_VERTICAL);
                             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
@@ -92,6 +115,15 @@ public class NewsCenterFragment extends Fragment {
                             tv.setLayoutParams(params);
                             ll_site_news.addView(tv);
                             ll_site_news.requestLayout();
+                            tv.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent();
+                                    intent.putExtra("noticeId", newsId);
+                                    intent.setClass(getContext(), DetailNews.class);
+                                    startActivity(intent);
+                                }
+                            });
                         }
                         break;
 
@@ -99,6 +131,7 @@ public class NewsCenterFragment extends Fragment {
                     case UPDATE_ANTI_TIPS:
                         for (int i = 0; i < 3; i++) {
                             TextView tv = new TextView(getContext());
+                            final int newsId = antiTipsList.get(i).getNewsId();
                             tv.setText(antiTipsList.get(i).getNewsTitle());
                             tv.setGravity(Gravity.CENTER_VERTICAL);
                             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
@@ -106,6 +139,15 @@ public class NewsCenterFragment extends Fragment {
                             tv.setLayoutParams(params);
                             ll_anti_tips.addView(tv);
                             ll_anti_tips.requestLayout();
+                            tv.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent();
+                                    intent.putExtra("tipsId", newsId);
+                                    intent.setClass(getContext(), DetailNews.class);
+                                    startActivity(intent);
+                                }
+                            });
                         }
                         break;
                 }
@@ -118,6 +160,14 @@ public class NewsCenterFragment extends Fragment {
         ll_success_case = view.findViewById(R.id.ll_success_case);
         ll_site_news = view.findViewById(R.id.ll_site_news);
         ll_anti_tips = view.findViewById(R.id.ll_anti_tips);
+        tv_more_case = view.findViewById(R.id.tv_more_case);
+        tv_more_notice = view.findViewById(R.id.tv_more_notice);
+        tv_more_tips = view.findViewById(R.id.tv_more_tips);
+
+//        more的点击事件
+        tv_more_case.setOnClickListener(this);
+        tv_more_notice.setOnClickListener(this);
+        tv_more_tips.setOnClickListener(this);
 
         List<String> images = new ArrayList<>();
         images.add(GeneralSetting.baseUrl + "/headpic/3.jpg");
@@ -231,7 +281,7 @@ public class NewsCenterFragment extends Fragment {
                         myJson = gson.toJson(jsonResult.getData());
                         antiTipsList = JSON.parseArray(myJson, News.class);
                         Message message = new Message();
-                        message.what = UPDATE_SITE_NEWS;
+                        message.what = UPDATE_ANTI_TIPS;
                         handler.sendMessage(message);
 
                     }
@@ -256,4 +306,21 @@ public class NewsCenterFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent();
+        switch (view.getId()) {
+            case R.id.tv_more_case:
+                intent.putExtra("type", 0);
+                break;
+            case R.id.tv_more_notice:
+                intent.putExtra("type", 1);
+                break;
+            case R.id.tv_more_tips:
+                intent.putExtra("type", 2);
+                break;
+        }
+        intent.setClass(getContext(), MorenewsActivity.class);
+        startActivity(intent);
+    }
 }

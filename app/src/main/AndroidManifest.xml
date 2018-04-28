@@ -25,6 +25,8 @@
         <activity android:name=".activity.DetailpersonActivity" />
         <activity android:name=".activity.SearchActivity" />
         <activity android:name=".activity.MissPersonDetailActivity" />
+        <activity android:name=".activity.DetailNews" />
+        <activity android:name=".activity.MorenewsActivity" />
     </application>
 
 </manifest>

@@ -79,7 +79,7 @@ public class InfoScanFragment extends Fragment {
 
         RequestParams params = new RequestParams(GeneralSetting.missInfoUrl);
 //                    params.setSslSocketFactory(...); // 设置ssl
-        params.addQueryStringParameter("type", "0");
+//        params.addQueryStringParameter("type", "0");
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {

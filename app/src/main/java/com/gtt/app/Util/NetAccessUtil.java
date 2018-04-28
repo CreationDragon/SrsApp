@@ -52,5 +52,4 @@ public class NetAccessUtil {
         });
         return myJson;
     }
-
 }

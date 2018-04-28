@@ -36,6 +36,16 @@
                 android:layout_marginLeft="20px"
                 android:gravity="center"
                 android:text="成功案例" />
+
+            <TextView
+                android:id="@+id/tv_more_case"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10px"
+                android:drawableRight="@drawable/down"
+                android:gravity="right"
+                android:text="more" />
+
         </LinearLayout>
         <!--实际内容-->
         <LinearLayout
@@ -76,6 +86,15 @@
                 android:layout_marginLeft="20px"
                 android:gravity="center"
                 android:text="站内新闻" />
+
+            <TextView
+                android:id="@+id/tv_more_notice"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10px"
+                android:drawableRight="@drawable/down"
+                android:gravity="right"
+                android:text="more" />
         </LinearLayout>
         <!--实际内容-->
         <LinearLayout
@@ -116,6 +135,15 @@
                 android:layout_marginLeft="20px"
                 android:gravity="center"
                 android:text="防骗技巧" />
+
+            <TextView
+                android:id="@+id/tv_more_tips"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10px"
+                android:drawableRight="@drawable/down"
+                android:gravity="right"
+                android:text="more" />
         </LinearLayout>
         <!--实际内容-->
         <LinearLayout
