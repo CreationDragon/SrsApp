@@ -62,6 +62,8 @@ public class InfoScanFragment extends Fragment {
         ll_missInfo = view.findViewById(R.id.ll_missInfo);
         searchView = view.findViewById(R.id.sv_missPerson);
 
+        searchView.setFocusable(false);
+
 
         List<String> images = new ArrayList<>();
         images.add(GeneralSetting.baseUrl + "/headpic/3.jpg");
@@ -127,6 +129,7 @@ public class InfoScanFragment extends Fragment {
                 intent.putExtra("searchContent", s);
                 intent.setClass(getActivity(), SearchActivity.class);
                 startActivity(intent);
+
                 return false;
             }
 
@@ -135,6 +138,7 @@ public class InfoScanFragment extends Fragment {
                 return false;
             }
         });
+
 
         return view;
     }

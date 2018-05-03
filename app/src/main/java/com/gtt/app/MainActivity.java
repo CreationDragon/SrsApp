@@ -65,9 +65,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        fragmentManager = getSupportFragmentManager();
+        transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.replace_content, new InfoScanFragment());
+        transaction.commit();
+
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
 //        默认选中，具有点击效果
         navigation.getMenu().getItem(0).setChecked(true);
+//        navigation.getMenu().getItem(0).setChecked(true);
+//        navigation.setSelectedItemId(navigation.getMenu().getItem(0).getItemId());
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
