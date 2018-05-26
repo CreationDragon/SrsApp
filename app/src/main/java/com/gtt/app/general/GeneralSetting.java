@@ -16,4 +16,13 @@ public class GeneralSetting {
     public static String getSuccessCasesByIdUrl = baseUrl + "getSuccessCasesById";
     public static String getSiteNoticeByIdUrl = baseUrl + "getSiteNoticeById";
     public static String getAntiFraudTipsByIdUrl = baseUrl + "getAntiFraudTipsById";
+    public static String releaseMissInfoUrl = baseUrl + "releaseMissInfo";
+    //    public static String uploadImageUrl = baseUrl + "/image/MissPersonPic";
+    public static String uploadImageUrl = baseUrl + "/image/upload";
+    public static String loginUrl = baseUrl + "appLogin";
+    public static String getUserByIdUrl = baseUrl + "admin/getUserInfoById";
+    public static String getMissPersonByUserIdUrl = baseUrl + "getMissPersonByUserid";
+    public static String setHistoricalRecordsUrl = baseUrl + "setHistoricalRecords";
+    public static String getRecordHistoryByUserIdUrl = baseUrl + "getRecordHistoryByUserId";
+
 }

@@ -1,6 +1,8 @@
 package com.gtt.app.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -22,6 +24,7 @@ import com.gtt.app.Util.NetAccessUtil;
 import com.gtt.app.general.GeneralSetting;
 import com.gtt.app.model.JsonResult;
 import com.gtt.app.model.Missingpersons;
+import com.gtt.app.model.News;
 import com.youth.banner.Banner;
 
 import org.xutils.common.Callback;
@@ -34,6 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import cn.finalteam.toolsfinal.StringUtils;
 
 /**
  * Created by Creat on 2018/4/22.
@@ -64,6 +68,7 @@ public class MissPersonDetailActivity extends AppCompatActivity {
 
     public static final int UPDATE_TEXT = 1;
     //    定义handler
+    @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -88,11 +93,20 @@ public class MissPersonDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_missperson_detail);
 
+
         //初始化Xutil
         x.Ext.init(getApplication());
         Intent intent = this.getIntent();
         final Integer missPersonId = intent.getIntExtra("missPersonId", 1);
 
+//        浏览记录
+        SharedPreferences preferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        String name = preferences.getString("user_name", "");
+        if (StringUtils.isEmpty(name)) {
+
+        } else {
+            setHistoricalRecords(preferences.getInt("user_id", 0), missPersonId);
+        }
         banner = findViewById(R.id.banner);
         ll_missInfo = findViewById(R.id.ll_missInfo);
         back = findViewById(R.id.back);
@@ -196,6 +210,35 @@ public class MissPersonDetailActivity extends AppCompatActivity {
                 });
             }
         }).start();
+
+    }
+
+    private void setHistoricalRecords(int user_id, Integer missPersonId) {
+        RequestParams params = new RequestParams(GeneralSetting.setHistoricalRecordsUrl);
+//                    params.setSslSocketFactory(...); // 设置ssl
+        params.addQueryStringParameter("userId", String.valueOf(user_id));
+        params.addQueryStringParameter("missPersonId", String.valueOf(missPersonId));
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Toast.makeText(x.app(), ex.getMessage(), Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+                Toast.makeText(x.app(), "cancelled", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
 
     }
 }
