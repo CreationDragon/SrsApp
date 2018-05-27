@@ -26,4 +26,5 @@
     <string name="scan_record">浏览记录</string>
     <string name="user_detail_address">详细住址</string>
     <string name="login_out">退出登录</string>
+    <string name="title_volunteer">志愿者招聘</string>
 </resources>

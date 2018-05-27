@@ -142,7 +142,7 @@ public class MissPersonDetailActivity extends AppCompatActivity {
                 pics = (List<String>) jsonResult.getData();
                 for (String name : pics
                         ) {
-                    images.add(GeneralSetting.baseUrl + "/missPersonsPics/" + missPersonId + "/" + name);
+                    images.add(GeneralSetting.baseUrl + "/missImage/" + name);
                 }
                 //设置图片加载器
                 banner.setImageLoader(new GlideImageLoader());

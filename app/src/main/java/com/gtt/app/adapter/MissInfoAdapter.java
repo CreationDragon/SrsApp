@@ -78,7 +78,7 @@ public class MissInfoAdapter extends BaseAdapter {
 
         if (missingpersons.getPsersonsPic() != null) {
 
-            Picasso.get().load(Uri.parse(GeneralSetting.baseUrl + "missPersonsPics/" + missingpersons.getPersonsId() + "/" + missingpersons.getPsersonsPic()).toString()).into(iv_head);
+            Picasso.get().load(Uri.parse(GeneralSetting.baseUrl + "missImage/" + missingpersons.getPsersonsPic()).toString()).into(iv_head);
         } else {
             Picasso.get().load(Uri.parse(GeneralSetting.baseUrl + "headpic/qyc.jpg").toString()).into(iv_head);
         }

@@ -14,6 +14,7 @@ import com.gtt.app.fragment.NewsCenterFragment;
 import com.gtt.app.fragment.ReleaseInfoFragment;
 import com.gtt.app.fragment.UserInfoFragment;
 import com.gtt.app.fragment.InfoScanFragment;
+import com.gtt.app.fragment.VolunteerFragment;
 
 import butterknife.BindView;
 
@@ -53,6 +54,13 @@ public class MainActivity extends AppCompatActivity {
                     fragmentManager = getSupportFragmentManager();
                     transaction = fragmentManager.beginTransaction();
                     transaction.replace(R.id.replace_content, new UserInfoFragment());
+                    transaction.commit();
+                    return true;
+
+                case R.id.navigation_volunteer:
+                    fragmentManager = getSupportFragmentManager();
+                    transaction = fragmentManager.beginTransaction();
+                    transaction.replace(R.id.replace_content, new VolunteerFragment());
                     transaction.commit();
                     return true;
             }

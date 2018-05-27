@@ -24,5 +24,6 @@ public class GeneralSetting {
     public static String getMissPersonByUserIdUrl = baseUrl + "getMissPersonByUserid";
     public static String setHistoricalRecordsUrl = baseUrl + "setHistoricalRecords";
     public static String getRecordHistoryByUserIdUrl = baseUrl + "getRecordHistoryByUserId";
+    public static String volunteerRegisterUrl = baseUrl + "volunteerRegister";
 
 }
