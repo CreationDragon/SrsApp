@@ -27,4 +27,11 @@
     <string name="user_detail_address">详细住址</string>
     <string name="login_out">退出登录</string>
     <string name="title_volunteer">志愿者招聘</string>
+    <string name="IsDna_yes">是</string>
+    <string name="IsDna_no">否</string>
+    <string name="welcome_register">还未注册？点击注册</string>
+    <string name="title_activity_regist">RegistActivity</string>
+    <string name="user_register">用户注册</string>
+    <string name="user_password">密码</string>
+    <string name="user_surePsw">确认密码</string>
 </resources>

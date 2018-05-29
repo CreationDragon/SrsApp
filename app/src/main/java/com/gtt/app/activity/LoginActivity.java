@@ -3,6 +3,7 @@ package com.gtt.app.activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -40,6 +41,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Button btn_login;
     String userName = null;
     String userPwd = null;
+    TextView tv_register;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,6 +55,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         et_user_pwd = findViewById(R.id.et_user_pwd);
         btn_login = findViewById(R.id.btn_login);
         iv_back = findViewById(R.id.iv_back);
+        tv_register = findViewById(R.id.tv_register);
+        tv_register.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
 
 
 //   焦点变化
@@ -61,6 +65,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //        设置点击事件
         btn_login.setOnClickListener(this);
         iv_back.setOnClickListener(this);
+        tv_register.setOnClickListener(this);
 
     }
 
@@ -76,6 +81,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             case R.id.iv_back:
                 finish();
+                break;
+
+            case R.id.tv_register:
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), RegistActivity.class);
+                startActivity(intent);
                 break;
         }
 //

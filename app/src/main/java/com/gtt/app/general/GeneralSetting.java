@@ -25,5 +25,6 @@ public class GeneralSetting {
     public static String setHistoricalRecordsUrl = baseUrl + "setHistoricalRecords";
     public static String getRecordHistoryByUserIdUrl = baseUrl + "getRecordHistoryByUserId";
     public static String volunteerRegisterUrl = baseUrl + "volunteerRegister";
+    public static String registerUrl = baseUrl + "register";
 
 }

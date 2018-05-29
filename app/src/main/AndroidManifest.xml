@@ -7,7 +7,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -33,13 +32,12 @@
         <activity android:name=".activity.UserInfoActivity" />
 
         <provider
-            android:name="com.gtt.app.Util.NotesContentProvider"
+            android:name=".Util.NotesContentProvider"
             android:authorities="com.example.granturipermissiontest.providers.NotesContentProvider"
             android:exported="true"
             android:grantUriPermissions="true"
             android:readPermission="com.gtt.app.READ_CONTENT"
             android:writePermission="com.gtt.app.notes.WRITE_CONTENT" />
-
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.***.fileprovider"
@@ -50,7 +48,7 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-
+        <activity android:name=".activity.RegistActivity"></activity>
     </application>
 
 </manifest>

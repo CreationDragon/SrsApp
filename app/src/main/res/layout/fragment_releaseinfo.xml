@@ -126,8 +126,7 @@
                     android:layout_weight="8"
                     android:background="@drawable/editsharp"
                     android:hint=""
-                    android:inputType="number"
-                    />
+                    android:inputType="number" />
 
             </LinearLayout>
 
@@ -285,14 +284,14 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="0" />
+                        android:text="@string/IsDna_yes" />
 
                     <RadioButton
                         android:id="@+id/rb_no"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="1" />
+                        android:text="@string/IsDna_no" />
 
                 </RadioGroup>
 

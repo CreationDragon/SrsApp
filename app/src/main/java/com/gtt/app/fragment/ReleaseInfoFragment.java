@@ -199,7 +199,7 @@ public class ReleaseInfoFragment extends Fragment implements View.OnClickListene
                 missingpersons.setPersonsBodyheight(Integer.parseInt(et_user_bodyHeight.getText().toString()));
                 missingpersons.setPersonsFeature(et_user_featuree.getText().toString());
                 missingpersons.setPersonsAddress(et_user_address.getText().toString());
-                missingpersons.setPersonsDna(Integer.parseInt(IsDna.getText().toString()));
+                missingpersons.setPersonsDna(judgeDna(IsDna.getText().toString()));
                 missingpersons.setPersonsDress(et_user_dress.getText().toString());
                 missingpersons.setPersonsContact(et_user_contact.getText().toString());
 
@@ -220,6 +220,15 @@ public class ReleaseInfoFragment extends Fragment implements View.OnClickListene
 
                 break;
 
+        }
+    }
+
+    //    判断是否检测过DNA
+    private Integer judgeDna(String s) {
+        if ("是".equals("s")) {
+            return 0;
+        } else {
+            return 1;
         }
     }
 
