@@ -19,6 +19,7 @@ import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.util.TimeUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +53,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -278,10 +281,10 @@ public class ReleaseInfoFragment extends Fragment implements View.OnClickListene
         dia.setMessage("加载中....");
         dia.show();
 
-
         RequestParams params = new RequestParams(GeneralSetting.uploadImageUrl);
         params.addQueryStringParameter("symbole", "releaseInfo");
-        List<KeyValue> list = new ArrayList<KeyValue>();
+        params.setAsJsonContent(true);
+        List<KeyValue> list = new ArrayList<>();
         list.add(new KeyValue("file", bmp));
         MultipartBody body = new MultipartBody(list, "UTF-8");
         params.setRequestBody(body);
@@ -298,7 +301,7 @@ public class ReleaseInfoFragment extends Fragment implements View.OnClickListene
             @Override
             public void onFinished() {
                 dia.dismiss();//加载完成
-                Toast.makeText(getActivity(), "消息发布成功", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "消息发布失败", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -352,7 +355,11 @@ public class ReleaseInfoFragment extends Fragment implements View.OnClickListene
                 e.printStackTrace();
             }
         }
-        file = new File(file + "/1.jpg");
+
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss_S".toString());
+        String dateString = sdf.format(new Date());
+
+        file = new File(file + "/" + dateString + ".jpg");
         try {
             BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
             bmp.compress(Bitmap.CompressFormat.JPEG, 100, bos);
