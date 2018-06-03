@@ -301,7 +301,7 @@ public class ReleaseInfoFragment extends Fragment implements View.OnClickListene
             @Override
             public void onFinished() {
                 dia.dismiss();//加载完成
-                Toast.makeText(getActivity(), "消息发布失败", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "消息发布成功", Toast.LENGTH_SHORT).show();
             }
 
             @Override
