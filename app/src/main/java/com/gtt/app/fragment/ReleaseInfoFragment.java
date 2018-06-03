@@ -240,11 +240,11 @@ public class ReleaseInfoFragment extends Fragment implements View.OnClickListene
                 RequestParams params = new RequestParams(GeneralSetting.releaseMissInfoUrl);
 //                    params.setSslSocketFactory(...); // 设置ssl
                 params.addQueryStringParameter("missPersonsInfo", str);
-                params.addQueryStringParameter("userID", "1");
+                params.addQueryStringParameter("userID", String.valueOf(userId));
                 x.http().post(params, new Callback.CommonCallback<String>() {
                     @Override
                     public void onSuccess(String result) {
-                        Log.i("successResult:       ", result);
+//                        Log.i("successResult:       ", result);
                         Gson gson = new Gson();
                         JsonResult jsonResult = gson.fromJson(result, JsonResult.class);
                         if (jsonResult.result.equals("success")) {
@@ -280,6 +280,7 @@ public class ReleaseInfoFragment extends Fragment implements View.OnClickListene
 
 
         RequestParams params = new RequestParams(GeneralSetting.uploadImageUrl);
+        params.addQueryStringParameter("symbole", "releaseInfo");
         List<KeyValue> list = new ArrayList<KeyValue>();
         list.add(new KeyValue("file", bmp));
         MultipartBody body = new MultipartBody(list, "UTF-8");

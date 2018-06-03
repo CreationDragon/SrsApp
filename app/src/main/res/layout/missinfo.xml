@@ -27,8 +27,10 @@
 
             <TextView
                 android:id="@+id/tv_name"
-                android:layout_width="100px"
+                android:layout_width="150px"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
                 android:text="姓名" />
 
             <ImageView

@@ -94,7 +94,7 @@
         android:id="@+id/lv_history"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/silver"
-        />
+        android:layout_marginBottom="60dp"
+        android:background="@color/silver" />
 
 </LinearLayout>

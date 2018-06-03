@@ -18,7 +18,7 @@ public class GeneralSetting {
     public static String getAntiFraudTipsByIdUrl = baseUrl + "getAntiFraudTipsById";
     public static String releaseMissInfoUrl = baseUrl + "releaseMissInfo";
     //    public static String uploadImageUrl = baseUrl + "/image/MissPersonPic";
-    public static String uploadImageUrl = baseUrl + "/image/upload";
+    public static String uploadImageUrl = baseUrl + "image/upload";
     public static String loginUrl = baseUrl + "appLogin";
     public static String getUserByIdUrl = baseUrl + "admin/getUserInfoById";
     public static String getMissPersonByUserIdUrl = baseUrl + "getMissPersonByUserid";
