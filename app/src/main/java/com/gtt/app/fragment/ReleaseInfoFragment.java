@@ -359,7 +359,6 @@ public class ReleaseInfoFragment extends Fragment implements View.OnClickListene
         @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss_S".toString());
         String dateString = sdf.format(new Date());
 
-
         file = new File(file + "/" + dateString + ".jpg");
         try {
             BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
