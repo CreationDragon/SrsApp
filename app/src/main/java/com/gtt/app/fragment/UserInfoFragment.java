@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.gtt.app.MainActivity;
 import com.gtt.app.R;
 import com.gtt.app.activity.LoginActivity;
 import com.gtt.app.activity.MissPersonDetailActivity;
@@ -58,6 +60,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
     Button btn_scanRecord;
     ListView lv_history;
     Integer userId = null;
+    String head = null;
     private List<Missingpersons> missingpersonsList = new ArrayList<>();
 
 
@@ -81,13 +84,18 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
 //        找SharedPreference
         SharedPreferences preferences = getContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         String name = preferences.getString("user_name", "");
+        head = getHead();
 //        非空判断
         if (!name.equals("")) {
             userId = preferences.getInt("user_id", 0);
             show_info.setVisibility(View.VISIBLE);
             btn_login_register.setVisibility(View.GONE);
             tv_user_name.setText(name);
-            Picasso.get().load(Uri.parse(GeneralSetting.baseUrl + "headpic/" + preferences.getInt("user_id", 0) + ".jpg").toString()).into(iv_head);
+//            if (null != head) {
+//                Picasso.get().load(Uri.parse(GeneralSetting.baseUrl + "headpic/" + preferences.getInt("user_id", 0) + ".jpg").toString()).into(iv_head);
+//            } else {
+//                Picasso.get().load(Uri.parse(GeneralSetting.baseUrl + "headpic/0.jpg").toString()).into(iv_head);
+//            }
 
             if (preferences.getString("user_gender", "").equals("男")) {
                 iv_user_man.setVisibility(View.VISIBLE);
@@ -128,6 +136,7 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
             case R.id.iv_head:
                 intent = new Intent();
                 intent.putExtra("userId", userId);
+                intent.putExtra("userHead", head);
                 intent.setClass(getActivity(), UserInfoActivity.class);
                 startActivity(intent);
 
@@ -249,6 +258,56 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
 
     }
 
+    //    获取头像
+    public String getHead() {
+
+        //        找SharedPreference
+        SharedPreferences preferences = getContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        final String name = preferences.getString("user_name", "");
+        final String pwd = preferences.getString("user_pwd", "");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                RequestParams params = new RequestParams(GeneralSetting.loginUrl);
+//                    params.setSslSocketFactory(...); // 设置ssl
+                params.addQueryStringParameter("userName", name);
+                params.addQueryStringParameter("userPsw", pwd);
+                x.http().post(params, new Callback.CommonCallback<String>() {
+                    @Override
+                    public void onSuccess(String result) {
+                        Log.i("登录返回的结果: ", result);
+                        Gson gson = new Gson();
+                        JsonResult jsonResult = gson.fromJson(result, JsonResult.class);
+                        com.gtt.app.entity.User u = gson.fromJson(String.valueOf(jsonResult.getData()), com.gtt.app.entity.User.class);
+                        head = u.getUserHead();
+
+                        if (null != head) {
+                            Picasso.get().load(Uri.parse(GeneralSetting.baseUrl + "headpic/" + u.getUserId() + ".jpg").toString()).into(iv_head);
+                        } else {
+                            Picasso.get().load(Uri.parse(GeneralSetting.baseUrl + "headpic/0.jpg").toString()).into(iv_head);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable ex, boolean isOnCallback) {
+                        Toast.makeText(x.app(), ex.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onCancelled(CancelledException cex) {
+                        Toast.makeText(x.app(), "cancelled", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onFinished() {
+
+                    }
+                });
+            }
+        }).start();
+
+        return head;
+    }
 
     private void btnInitialize() {
         btn_scanRecord.setBackgroundColor(Color.parseColor("#FFFFFF"));

@@ -165,6 +165,9 @@ public class RegistActivity extends AppCompatActivity implements View.OnClickLis
                         JsonResult jsonResult = gson.fromJson(result, JsonResult.class);
                         if (jsonResult.result.equals("success")) {
                             Toast.makeText(getApplicationContext(), "注册成功", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent();
+                            intent.setClass(getApplicationContext(), LoginActivity.class);
+                            startActivity(intent);
                         } else {
                             Toast.makeText(getApplicationContext(), "系统维护，请稍后再试", Toast.LENGTH_SHORT).show();
                         }

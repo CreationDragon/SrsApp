@@ -54,6 +54,7 @@ public class UserInfoActivity extends AppCompatActivity {
     TextView tv_user_email;
     Button btn_login_out;
     View mainView;
+    String head = null;
 
     public static final int MSG_STATE = 1;
     @SuppressLint("HandlerLeak")
@@ -73,7 +74,11 @@ public class UserInfoActivity extends AppCompatActivity {
                     tv_user_detail_address.setText(user.getUserAddressDetail());
                     tv_user_contact.setText(user.getUserPhone());
                     tv_user_email.setText(user.getUserEmail());
-                    Picasso.get().load(Uri.parse(GeneralSetting.baseUrl + "headpic/" + user.getUserId() + ".jpg").toString()).into(iv_head);
+                    if (null != head) {
+                        Picasso.get().load(Uri.parse(GeneralSetting.baseUrl + "headpic/" + user.getUserId() + ".jpg").toString()).into(iv_head);
+                    } else {
+                        Picasso.get().load(Uri.parse(GeneralSetting.baseUrl + "headpic/0.jpg").toString()).into(iv_head);
+                    }
                     break;
             }
             super.handleMessage(msg);
@@ -91,6 +96,7 @@ public class UserInfoActivity extends AppCompatActivity {
 //        获取参数
         intent = this.getIntent();
         userId = intent.getIntExtra("userId", 0);
+        head = intent.getStringExtra("userHead");
 
 
         //        发现组件

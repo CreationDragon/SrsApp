@@ -18,10 +18,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.gtt.app.MainActivity;
 import com.gtt.app.R;
 import com.gtt.app.general.GeneralSetting;
 import com.gtt.app.model.JsonResult;
-import com.gtt.app.model.User;
+import com.gtt.app.entity.User;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -118,10 +119,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             editor.putString("user_name", u.getUserName());
                             editor.putString("user_pwd", u.getUserPsw());
                             editor.putString("user_gender", u.getUserGener());
+                            editor.putString("user_head", u.getUserHead());
                             editor.apply();
                             editor.commit();
 
-                            finish();
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+
 
                         } else {
                             Toast.makeText(getApplicationContext(), "账号密码错误", Toast.LENGTH_SHORT).show();
